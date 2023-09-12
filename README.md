@@ -3,7 +3,7 @@
 
 ## Overview
 
-This repository contains the source code and deployment files for the **Website Name**. The website is live and can be accessed at [www.raveliapp.vercel.app](https://raveli.vercel.app).
+This repository contains the source code and deployment files for the **Website Name**. The website is live and can be accessed at [www.raveli.vercel.app](https://raveli.vercel.app).
 
 ## Table of Contents
 
