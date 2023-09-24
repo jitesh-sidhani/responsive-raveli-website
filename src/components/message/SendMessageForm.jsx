@@ -1,24 +1,32 @@
 import { useState } from 'react'
 
 const SendMessageForm = () => {
-  const [email, setEmail] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [message, setMessage] = useState('')
+  const [formData, setFormData] = useState({
+    email: '',
+    firstname: '',
+    lastname: '',
+    message: ''
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setEmail('')
-    setFirstName('')
-    setLastName('')
-    setMessage('')
+
+    console.log(formData)
+    setFormData((prevState) => ({
+      ...prevState,
+      email: '',
+      firstname: '',
+      lastname: '',
+      message: ''
+    }))
   }
 
-  const handleChange = (e) => {
-    setEmail(e.target.value)
-    setFirstName(e.target.value)
-    setLastName(e.target.value)
-    setMessage(e.target.value)
+  const handleFormData = (e) => {
+    console.log(e.target.name)
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
 
   return (
@@ -32,8 +40,9 @@ const SendMessageForm = () => {
             <input
               type="text"
               placeholder="First Name"
-              value={firstName}
-              onChange={handleChange}
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleFormData}
               className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
             />
           </label>
@@ -42,28 +51,35 @@ const SendMessageForm = () => {
             <input
               type="text"
               placeholder="Last Name"
-              value={lastName}
-              onChange={handleChange}
+              name="lastname"
+              value={formData.lastname}
+              onChange={handleFormData}
               className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
             />
           </label>
         </div>
+
         <label>
           <input
             type="email"
             placeholder="Your Email"
-            value={email}
-            onChange={handleChange}
+            name="email"
+            value={formData.email}
+            onChange={handleFormData}
             className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
           />
         </label>
+
         <label>
           <textarea
-            value={message}
+            value={formData.message}
+            onChange={handleFormData}
+            name="message"
             placeholder="Message"
             className="h-[140px] w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
           />
         </label>
+
         <div>
           <button
             type="submit"
