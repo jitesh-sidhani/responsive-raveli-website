@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
 
 const SendMessageForm = () => {
   const [formData, setFormData] = useState({
@@ -6,35 +6,34 @@ const SendMessageForm = () => {
     firstname: '',
     lastname: '',
     message: ''
-  })
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    console.log(formData);
 
-    console.log(formData)
-    setFormData((prevState) => ({
-      ...prevState,
+    // You can reset the form fields by setting the state directly.
+    setFormData({
       email: '',
       firstname: '',
       lastname: '',
       message: ''
-    }))
-  }
+    });
+  };
 
   const handleFormData = (e) => {
-    console.log(e.target.name)
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
-  }
+    const { name, value } = e.target;
+
+    // Use the spread operator to update the specific field while preserving others.
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
 
   return (
     <div className="border-rounded w-full bg-tertiary p-12 shadow-box">
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-col gap-5 text-center"
-      >
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-center">
         <div className="flex w-full flex-col items-center justify-between gap-6 ss:flex-row">
           <label className="w-full">
             <input
@@ -43,7 +42,7 @@ const SendMessageForm = () => {
               name="firstname"
               value={formData.firstname}
               onChange={handleFormData}
-              className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
+              className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none"
             />
           </label>
 
@@ -54,7 +53,7 @@ const SendMessageForm = () => {
               name="lastname"
               value={formData.lastname}
               onChange={handleFormData}
-              className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
+              className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none"
             />
           </label>
         </div>
@@ -66,7 +65,7 @@ const SendMessageForm = () => {
             name="email"
             value={formData.email}
             onChange={handleFormData}
-            className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
+            className="w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none"
           />
         </label>
 
@@ -76,7 +75,7 @@ const SendMessageForm = () => {
             onChange={handleFormData}
             name="message"
             placeholder="Message"
-            className="h-[140px] w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none "
+            className="h-[140px] w-full rounded-[7px] border-[0.6px] border-black bg-white px-5 py-[14px] font-DMSans text-[15px] outline-none"
           />
         </label>
 
@@ -90,7 +89,7 @@ const SendMessageForm = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SendMessageForm
+export default SendMessageForm;
